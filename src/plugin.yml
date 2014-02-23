@@ -2,7 +2,7 @@ name: Simple Suffix
 author: Staartvin
 website: http://dev.bukkit.org/server-mods/simple-suffix/
 main: me.staartvin.simplesuffix.SimpleSuffix
-version: 1.6
+version: 1.7.1
 description: Let users create their own suffixes and prefixes
 depend: [Vault]
 database: true
