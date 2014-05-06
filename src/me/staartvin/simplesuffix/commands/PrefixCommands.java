@@ -27,7 +27,7 @@ public class PrefixCommands implements CommandExecutor {
 			
 			if (!args[0].equalsIgnoreCase("other")) {
 				
-				return plugin.commands.setPrefix(sender, args, true);
+				return plugin.getCommands().setPrefix(sender, args, true);
 				
 			} else {
 				if (args.length < 3) {
@@ -36,7 +36,7 @@ public class PrefixCommands implements CommandExecutor {
 					return true;
 				}
 				
-				return plugin.commands.setPrefix(sender, args, false);
+				return plugin.getCommands().setPrefix(sender, args, false);
 			}
 		}
 		sender.sendMessage(ChatColor.RED + "Incorrect command usage!");

@@ -18,12 +18,13 @@ public class PermissionsHandler{
 	public void setupPermissions() {
 		if (useDatabase()) {
 			plugin.setupDatabase();
-			plugin.logger.logNormal("Using database because permissions plugin doesn't provide chat support!");
+			plugin.getLoggerClass().logNormal("Using database because permissions plugin doesn't provide chat support!");
 		}
 	}
 	
 	public boolean useDatabase() {
-		if (plugin.vaultHandler.getVault() != null) {
+		if (plugin.getVaultHandler().getVault() != null) {
+			plugin.getVaultHandler();
 			if (VaultHandler.chat == null) {
 				return true;
 			}
@@ -33,25 +34,25 @@ public class PermissionsHandler{
 	
 	public String getPrefix(Player player){ 
 		if (useDatabase()) {
-			Database prefix = plugin.sqLite.getPrefix(player.getName());
+			Database prefix = plugin.getSqLite().getPrefix(player.getName());
 			if (prefix == null) return null;
 			return prefix.getPrefix();
 		}
-		return plugin.vaultHandler.getPlayerPrefix(player);
+		return plugin.getVaultHandler().getPlayerPrefix(player);
 	}
 	
 	public String getSuffix(Player player){ 
 		if (useDatabase()) {
-			Database suffix = plugin.sqLite.getSuffix(player.getName());
+			Database suffix = plugin.getSqLite().getSuffix(player.getName());
 			if (suffix == null) return null;
 			return suffix.getSuffix();
 		}
-		return plugin.vaultHandler.getPlayerSuffix(player);
+		return plugin.getVaultHandler().getPlayerSuffix(player);
 	}
 	
 	public void setGlobalPrefix(Player player, String prefix){ 
 		if (useDatabase()) {
-			Database dprefix = plugin.sqLite.getPrefix(player.getName());
+			Database dprefix = plugin.getSqLite().getPrefix(player.getName());
 			if (dprefix == null) {
 				dprefix = new Database();
 				dprefix.setPlayerName(player.getName());
@@ -64,12 +65,12 @@ public class PermissionsHandler{
 			plugin.getDatabase().save(dprefix);
 			return;
 		}
-		plugin.vaultHandler.setGlobalPlayerPrefix(player, prefix);
+		plugin.getVaultHandler().setGlobalPlayerPrefix(player, prefix);
 	}
 	
 	public void setGlobalSuffix(Player player, String suffix){ 
 		if (useDatabase()) {
-			Database dsuffix = plugin.sqLite.getSuffix(player.getName());
+			Database dsuffix = plugin.getSqLite().getSuffix(player.getName());
 			if (dsuffix == null) {
 				dsuffix = new Database();
 				dsuffix.setPlayerName(player.getName());
@@ -82,12 +83,12 @@ public class PermissionsHandler{
 			plugin.getDatabase().save(dsuffix);
 			return;
 		}
-		plugin.vaultHandler.setGlobalPlayerSuffix(player, suffix);
+		plugin.getVaultHandler().setGlobalPlayerSuffix(player, suffix);
 	}
 	
 	public void setWorldSuffix(Player player, String suffix, World world){ 
 		if (useDatabase()) {
-			Database dsuffix = plugin.sqLite.getSuffix(player.getName());
+			Database dsuffix = plugin.getSqLite().getSuffix(player.getName());
 			if (dsuffix == null) {
 				dsuffix = new Database();
 				dsuffix.setPlayerName(player.getName());
@@ -100,12 +101,12 @@ public class PermissionsHandler{
 			plugin.getDatabase().save(dsuffix);
 			return;
 		}
-		plugin.vaultHandler.setWorldPlayerSuffix(player, suffix, world);
+		plugin.getVaultHandler().setWorldPlayerSuffix(player, suffix, world);
 	}
 	
 	public void setWorldPrefix(Player player, String prefix, World world){ 
 		if (useDatabase()) {
-			Database dprefix = plugin.sqLite.getPrefix(player.getName());
+			Database dprefix = plugin.getSqLite().getPrefix(player.getName());
 			if (dprefix == null) {
 				dprefix = new Database();
 				dprefix.setPlayerName(player.getName());
@@ -118,12 +119,12 @@ public class PermissionsHandler{
 			plugin.getDatabase().save(dprefix);
 			return;
 		}
-		plugin.vaultHandler.setWorldPlayerPrefix(player, prefix, world);
+		plugin.getVaultHandler().setWorldPlayerPrefix(player, prefix, world);
 	}
 	
 	public void clearGlobalSuffix(Player player){ 
 		if (useDatabase()) {
-			Database dsuffix = plugin.sqLite.getSuffix(player.getName());
+			Database dsuffix = plugin.getSqLite().getSuffix(player.getName());
 			if (dsuffix == null) {
 				dsuffix = new Database();
 				dsuffix.setPlayerName(player.getName());
@@ -136,12 +137,12 @@ public class PermissionsHandler{
 			plugin.getDatabase().save(dsuffix);
 			return;
 		}
-		plugin.vaultHandler.clearGlobalSuffix(player.getName());
+		plugin.getVaultHandler().clearGlobalSuffix(player.getName());
 	}
 	
 	public void clearWorldPrefix(Player player, String world){ 
 		if (useDatabase()) {
-			Database dprefix = plugin.sqLite.getPrefix(player.getName());
+			Database dprefix = plugin.getSqLite().getPrefix(player.getName());
 			if (dprefix == null) {
 				dprefix = new Database();
 				dprefix.setPlayerName(player.getName());
@@ -154,12 +155,12 @@ public class PermissionsHandler{
 			plugin.getDatabase().save(dprefix);
 			return;
 		}
-		plugin.vaultHandler.clearWorldPrefix(player.getName(), world);
+		plugin.getVaultHandler().clearWorldPrefix(player.getName(), world);
 	}
 	
 	public void clearWorldSuffix(Player player, String world){ 
 		if (useDatabase()) {
-			Database dsuffix = plugin.sqLite.getSuffix(player.getName());
+			Database dsuffix = plugin.getSqLite().getSuffix(player.getName());
 			if (dsuffix == null) {
 				dsuffix = new Database();
 				dsuffix.setPlayerName(player.getName());
@@ -172,12 +173,12 @@ public class PermissionsHandler{
 			plugin.getDatabase().save(dsuffix);
 			return;
 		}
-		plugin.vaultHandler.clearWorldSuffix(player.getName(), world);
+		plugin.getVaultHandler().clearWorldSuffix(player.getName(), world);
 	}
 	
 	public void clearGlobalPrefix(Player player){ 
 		if (useDatabase()) {
-			Database dprefix = plugin.sqLite.getPrefix(player.getName());
+			Database dprefix = plugin.getSqLite().getPrefix(player.getName());
 			if (dprefix == null) {
 				dprefix = new Database();
 				dprefix.setPlayerName(player.getName());
@@ -190,6 +191,6 @@ public class PermissionsHandler{
 			plugin.getDatabase().save(dprefix);
 			return;
 		}
-		plugin.vaultHandler.clearGlobalPrefix(player.getName());
+		plugin.getVaultHandler().clearGlobalPrefix(player.getName());
 	}
 }

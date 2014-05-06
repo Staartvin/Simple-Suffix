@@ -17,30 +17,30 @@ public class SSChatListener implements Listener {
 
 	@EventHandler
 	public void onChat(PlayerChatEvent event) {
-		if (!plugin.permHandler.useDatabase())
+		if (!plugin.getPermHandler().useDatabase())
 			return;
 
 		String prefix;
 		String suffix;
 		
-		if (plugin.permHandler.getPrefix(event.getPlayer()) == null) {
+		if (plugin.getPermHandler().getPrefix(event.getPlayer()) == null) {
 			prefix = "";
 		}
 		else {
-			prefix = plugin.config.replaceText(
+			prefix = plugin.getConfigClass().replaceText(
 					plugin.getConfig().getString("predefined prefix"),
-					plugin.permHandler.getPrefix(event.getPlayer()));	
+					plugin.getPermHandler().getPrefix(event.getPlayer()));	
 		}
-		if (plugin.permHandler.getSuffix(event.getPlayer()) == null) {
+		if (plugin.getPermHandler().getSuffix(event.getPlayer()) == null) {
 			suffix = "";
 		}
 		else {
-			suffix = plugin.config.replaceText(
+			suffix = plugin.getConfigClass().replaceText(
 					plugin.getConfig().getString("predefined suffix"),
-					plugin.permHandler.getSuffix(event.getPlayer()));	
+					plugin.getPermHandler().getSuffix(event.getPlayer()));	
 		}
 			
-		String format = plugin.config.getFormat();
+		String format = plugin.getConfigClass().getFormat();
 		format = format.replace("%prefix%", prefix)
 				.replace("%suffix%", suffix)
 				.replace("%player%", event.getPlayer().getName())

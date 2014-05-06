@@ -12,20 +12,17 @@ import me.staartvin.simplesuffix.permissions.PermissionsHandler;
 import me.staartvin.simplesuffix.sqlite.Database;
 import me.staartvin.simplesuffix.sqlite.SqLite;
 import me.staartvin.simplesuffix.vault.VaultHandler;
-
-import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
 public class SimpleSuffix extends JavaPlugin {
 
-	public VaultHandler vaultHandler; 
-	public Logger logger;
-	public Config config; 
-	public SqLite sqLite; 
-	public Commands commands; 
-	public PermissionsHandler permHandler; 
+	private VaultHandler vaultHandler; 
+	private Logger logger;
+	private Config config; 
+	private SqLite sqLite; 
+	private Commands commands; 
+	private PermissionsHandler permHandler; 
 	
 	@Override
 	public void onEnable() {
@@ -62,13 +59,7 @@ public class SimpleSuffix extends JavaPlugin {
 		logger.logNormal("Simple Suffix v" + getDescription().getVersion() + " has been disabled!");
 	}
 	
-	public boolean hasPermission(String permission, CommandSender sender) {
-		if (!sender.hasPermission(permission)) {
-			sender.sendMessage(ChatColor.RED + "You cannot do this! You need (" + permission + ") to do this!");
-			return false;
-		}
-		return true;
-	}
+	
 	
 	public void setupDatabase() {
 		try {
@@ -85,4 +76,27 @@ public class SimpleSuffix extends JavaPlugin {
         list.add(Database.class);
         return list;
     }
+	public SqLite getSqLite() {
+		return sqLite;
+	}
+
+	public Commands getCommands() {
+		return commands;
+	}
+
+	public PermissionsHandler getPermHandler() {
+		return permHandler;
+	}
+	
+	public VaultHandler getVaultHandler() {
+		return vaultHandler;
+	}
+	
+	public Logger getLoggerClass() {
+		return logger;
+	}
+	
+	public Config getConfigClass() {
+		return config;
+	}
 }

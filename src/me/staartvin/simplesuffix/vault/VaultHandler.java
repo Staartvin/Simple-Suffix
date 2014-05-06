@@ -44,7 +44,7 @@ public class VaultHandler {
 		List<World> worlds = plugin.getServer().getWorlds();
 
 		for (World world : worlds) {
-			chat.setPlayerSuffix(world, player.getName(), plugin.config
+			chat.setPlayerSuffix(world, player.getName(), plugin.getConfigClass()
 					.replaceText(
 							plugin.getConfig().getString("predefined suffix"),
 							suffix));
@@ -58,18 +58,18 @@ public class VaultHandler {
 	public void setGlobalPlayerPrefix(Player player, String prefix) {
 		List<World> worlds = plugin.getServer().getWorlds();
 		for (World world : worlds) {
-			chat.setPlayerPrefix(world, player.getName(), plugin.config.replaceText(plugin
+			chat.setPlayerPrefix(world, player.getName(), plugin.getConfigClass().replaceText(plugin
 					.getConfig().getString("predefined prefix"), prefix));
 		}
 	}
 	
 	public void setWorldPlayerPrefix(Player player, String prefix, World world) {
-		chat.setPlayerPrefix(world, player.getName(), plugin.config.replaceText(plugin
+		chat.setPlayerPrefix(world, player.getName(), plugin.getConfigClass().replaceText(plugin
 					.getConfig().getString("predefined prefix"), prefix));
 	}
 	
 	public void setWorldPlayerSuffix(Player player, String suffix, World world) {
-			chat.setPlayerSuffix(world, player.getName(), plugin.config
+			chat.setPlayerSuffix(world, player.getName(), plugin.getConfigClass()
 					.replaceText(
 							plugin.getConfig().getString("predefined suffix"),
 							suffix));

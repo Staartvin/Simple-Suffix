@@ -29,7 +29,7 @@ public class SuffixCommands implements CommandExecutor {
 			
 			// Set your own suffix
 			if (!args[0].equalsIgnoreCase("other")) {
-				return plugin.commands.setSuffix(sender, args, true);	
+				return plugin.getCommands().setSuffix(sender, args, true);	
 			}
 			
 			else {
@@ -40,7 +40,7 @@ public class SuffixCommands implements CommandExecutor {
 					return true;
 				}
 
-				return plugin.commands.setSuffix(sender, args, false);
+				return plugin.getCommands().setSuffix(sender, args, false);
 			}
 		}
 		sender.sendMessage(ChatColor.RED + "Incorrect command usage!");
