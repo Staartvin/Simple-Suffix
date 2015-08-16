@@ -657,7 +657,11 @@ public class Commands implements TabExecutor {
 			String extra = lastArg.substring(lastArg.indexOf(":") + 1);
 
 			if (extra == null || extra.equals("")) {
-				return null;
+
+				// Get all online players
+				for (Player p: plugin.getServer().getOnlinePlayers()) {
+					names.add("player:" + p.getName());
+				}
 			}
 
 			// Get all matching players.
@@ -682,13 +686,6 @@ public class Commands implements TabExecutor {
 		if (lastArg.toLowerCase().contains("world:")) {
 			// Inin list for return.
 			List<String> names = new ArrayList<String>();
-
-			// Get extra stuff he might have typed.
-			String extra = lastArg.substring(lastArg.indexOf(":") + 1);
-
-			if (extra == null || extra.equals("")) {
-				return null;
-			}
 
 			// Get all matching world.
 			List<World> worlds = plugin.getServer()
