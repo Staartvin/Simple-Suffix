@@ -1,7 +1,5 @@
 package me.staartvin.simplesuffix.vault;
 
-import java.util.List;
-
 import me.staartvin.simplesuffix.SimpleSuffix;
 import net.milkbowl.vault.chat.Chat;
 
@@ -40,58 +38,61 @@ public class VaultHandler {
 		return chat.getPlayerSuffix(player);
 	}
 
-	public void setGlobalPlayerSuffix(Player player, String suffix) {
-		List<World> worlds = plugin.getServer().getWorlds();
+	@SuppressWarnings("deprecation")
+	public void setPrefix(String worldName, String playerName, String prefix,
+			boolean clear) {
 
-		for (World world : worlds) {
-			chat.setPlayerSuffix(world, player.getName(), plugin.getConfigClass()
-					.replaceText(
-							plugin.getConfig().getString("predefined suffix"),
-							suffix));
+		String message = plugin.getConfig().getString("predefined prefix");
+
+		message = plugin.getConfigClass().replaceText(message, prefix);
+
+		// Should we clear it?
+		if (clear) {
+			message = "";
+			prefix = "";
 		}
+
+		// One specific world
+		if (worldName != null) {
+			chat.setPlayerPrefix(worldName, playerName, message);
+		} else {
+			// All worlds
+			for (World world : plugin.getServer().getWorlds()) {
+				chat.setPlayerPrefix(world.getName(), playerName, message);
+			}
+		}
+		
+		plugin.getPermHandler().setPrefix(playerName, prefix);
+	}
+
+	@SuppressWarnings("deprecation")
+	public void setSuffix(String worldName, String playerName, String suffix,
+			boolean clear) {
+
+		String message = plugin.getConfig().getString("predefined suffix");
+
+		message = plugin.getConfigClass().replaceText(message, suffix);
+
+		// Should we clear it?
+		if (clear) {
+			message = "";
+			suffix = "";
+		}
+
+		// One specific world
+		if (worldName != null) {
+			chat.setPlayerSuffix(worldName, playerName, message);
+		} else {
+			// All worlds
+			for (World world : plugin.getServer().getWorlds()) {
+				chat.setPlayerSuffix(world.getName(), playerName, message);
+			}
+		}
+		
+		plugin.getPermHandler().setSuffix(playerName, suffix);
 	}
 
 	public String getPlayerPrefix(Player player) {
 		return chat.getPlayerPrefix(player);
-	}
-
-	public void setGlobalPlayerPrefix(Player player, String prefix) {
-		List<World> worlds = plugin.getServer().getWorlds();
-		for (World world : worlds) {
-			chat.setPlayerPrefix(world, player.getName(), plugin.getConfigClass().replaceText(plugin
-					.getConfig().getString("predefined prefix"), prefix));
-		}
-	}
-	
-	public void setWorldPlayerPrefix(Player player, String prefix, World world) {
-		chat.setPlayerPrefix(world, player.getName(), plugin.getConfigClass().replaceText(plugin
-					.getConfig().getString("predefined prefix"), prefix));
-	}
-	
-	public void setWorldPlayerSuffix(Player player, String suffix, World world) {
-			chat.setPlayerSuffix(world, player.getName(), plugin.getConfigClass()
-					.replaceText(
-							plugin.getConfig().getString("predefined suffix"),
-							suffix));
-	}
-	
-	public void clearGlobalPrefix(String player) {
-		for (World world:plugin.getServer().getWorlds()) {
-			chat.setPlayerPrefix(world, player, "");
-		}
-	}
-	
-	public void clearGlobalSuffix(String player) {
-		for (World world:plugin.getServer().getWorlds()) {
-			chat.setPlayerSuffix(world, player, "");
-		}
-	}
-	
-	public void clearWorldPrefix(String player, String world) {
-		chat.setPlayerPrefix(world, player, "");
-	}
-	
-	public void clearWorldSuffix(String player, String world) {
-		chat.setPlayerSuffix(world, player, "");
 	}
 }

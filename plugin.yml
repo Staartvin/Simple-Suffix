@@ -1,0 +1,58 @@
+name: SimpleSuffix
+author: Staartvin
+website: http://dev.bukkit.org/server-mods/simple-suffix/
+main: me.staartvin.simplesuffix.SimpleSuffix
+version: 2.0
+description: Let users create their own suffixes and prefixes
+depend: [Vault]
+database: true
+permissions:
+    simplesuffix.set.suffix.self:
+        description: Allows a player to set their own suffix.
+        default: op
+    simplesuffix.set.suffix.other:
+        description: Allows a player to set someones suffix.
+        default: op
+    simplesuffix.set.prefix.self:
+        description: Allows a player to set their own prefix.
+        default: op
+    simplesuffix.set.prefix.other:
+        description: Allows a player to set someones prefix.
+        default: op
+    simplesuffix.format.random:
+        description: Allows a player to use &k.
+        default: op
+    simplesuffix.format.bold:
+        description: Allows a player to use &l.
+        default: op
+    simplesuffix.format.strike:
+        description: Allows a player to use &m.
+        default: op
+    simplesuffix.format.underlined:
+        description: Allows a player to use &n.
+        default: op
+    simplesuffix.format.italic:
+        description: Allows a player to use &o.
+        default: op
+    simplesuffix.format.reset:
+        description: Allows a player to use &r.
+        default: op
+    simplesuffix.colours:
+        description: Allows a player to use colours.
+        default: op
+    simplesuffix.colors:
+        description: Allows a player to use colors.
+        default: op
+    simplesuffix.suffix.bypass.censor:
+        description: Allows a player to use censored words in their suffix.
+        default: op
+    simplesuffix.prefix.bypass.censor:
+        description: Allows a player to use censored words in their prefix.
+        default: op
+commands:
+    suffix:
+      description: Set a suffix.
+      usage: /<command> <suffix>
+    prefix:
+      description: Set a prefix.
+      usage: /<command> <prefix>
